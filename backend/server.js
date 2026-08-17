@@ -78,6 +78,7 @@ if (!process.env.TMDB_API_KEY) throw new Error('TMDB_API_KEY must be set');
 if (process.env.NODE_ENV === 'production' && !process.env.SESSION_SECRET) {
   throw new Error('SESSION_SECRET must be set in production');
 }
+if (!process.env.GROQ_API_KEY) console.warn('GROQ_API_KEY is not set; AI features (/api/generate) will return 503');
 
 const bare = createBareServer(PX.edge, { websocket: { maxPayloadLength: 4096 } });
 const barePremium = createBareServer('/api/bare-premium/', { websocket: { maxPayloadLength: 4096 } });

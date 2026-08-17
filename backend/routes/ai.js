@@ -46,7 +46,7 @@ function enqueue(task) {
 }
 
 router.post('/', async (req, res) => {
-  if (!process.env.GROQ_API_KEY) return res.status(500).json({ error: 'AI service not configured' });
+  if (!process.env.GROQ_API_KEY) return res.status(503).json({ error: 'AI service not configured' });
   const ip = toIPv4(null, req);
   if (checkCircuitBreaker(ip, null)) return res.status(429).json({ error: 'Too many requests' });
 
